@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Movie List Table";
+}
+
+@model List<ApplicationResponse>
+
+@* Create table head, columns for the movie information *@
+<table class="table table-dark table-striped table-hover">
+
+    <thead>
+        <tr>
+            <td> Movie ID</td>
+            <td> Category</td>
+            <td> Title</td>
+            <td> Year</td>
+            <td> FirstName</td>
+            <td> LastName</td>
+            <td> Rating</td>
+            <td> Edited</td>
+            <td> Lent To...</td>
+            <td> Notes</td>
+        </tr>
+    </thead>
+
+    
+    <tbody>
+        @* Pulling data entry one at a time by setting a loop *@
+        @foreach (var x in Model)
+            {
+                <tr>
+                    <td>@x.MovieId</td>
+                    <td>@x.Category.Category</td>
+                    <td>@x.Title</td>
+                    <td>@x.Year</td>
+                    <td>@x.DirectorFirstName</td>
+                    <td>@x.DirectorLastName</td>
+                    <td>@x.Rating</td>
+                    <td>@x.Edited</td>
+                    <td>@x.LentTo</td>
+                    <td>@x.Notes</td>
+
+                    @* add asp-action to edit and delete the data (CRUD) *@
+                    <td><a asp-controller="Home" asp-action="Edit" asp-route-movieid="@x.MovieId">Edit</a></td>
+                    <td><a asp-controller="Home" asp-action="Delete" asp-route-movieid="@x.MovieId">Delete</a></td>
+                </tr>
+
+
+            }
+    </tbody>
+</table>
+
+
